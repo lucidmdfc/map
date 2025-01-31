@@ -10,8 +10,8 @@ import { GeoJSON as GeoJSONType } from "geojson";
 
 // controlls
 import Legend from "../legend/legend";
-import ResetButtonControl from "../controlls/ResetButtonControl";
-import SortingByControl from "../controlls/SortingByControl";
+import ResetButtonControl from "../controls/ResetButtonControl";
+import SortingByControl from "../controls/SortingByControl";
 // layers
 import GeoJSONLayer from "../Layers/GeoJSONLayer";
 import MarkerLayer from "../Layers/MarkerLayer";
@@ -28,6 +28,9 @@ const CustomMapContainer: React.FC = () => {
   );
   const [statistics, setStatistics] = useState<GeoJSONType | null>(null);
   const [sortingByMethode, setSortingByMethode] = useState(sortingMethods[0]);
+  const [legendType, setLegendType] = useState<"category" | "gradient">(
+    "gradient"
+  );
   const handleCityClick = (feature: any) => {
     const cityData: GeoJSONType = {
       type: "FeatureCollection",
@@ -92,13 +95,16 @@ const CustomMapContainer: React.FC = () => {
       )}
 
       {/* Legend */}
-      {statistics && <Legend sortingData={sortingByMethode} />}
+      {statistics && (
+        <Legend sortingData={sortingByMethode} legendType={legendType} />
+      )}
 
       {statistics && <ResetButtonControl onReset={handleReset} />}
       {statistics && (
         <SortingByControl
           sortingMethods={sortingMethods}
           onSortingByChange={onSortingByChange}
+          onLegendTypeChange={setLegendType}
         />
       )}
     </LeafletMapContainer>

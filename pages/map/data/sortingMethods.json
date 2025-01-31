@@ -1,6 +1,6 @@
 [
   {
-    "field": "capacity",
+    "field": "Capacity",
     "Legends": [
       {
         "label": "Low capacity",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "field": "density",
+    "field": "Density",
     "Legends": [
       { "label": "Low Density", "color": "#BAE2E8", "NumericRanges": [0, 19] },
       {

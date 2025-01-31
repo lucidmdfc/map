@@ -1,10 +1,37 @@
 import dynamic from "next/dynamic";
-const MapContainer = dynamic(() => import("./map/MapContainer"), { ssr: false });
+import { Box } from "@mui/material";
+
+// Dynamically import the MapContainer component
+const MapContainer = dynamic(
+  () => import("./map/components/map/MapContainer"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   return (
-  <div style={{ height: "500px", width: "650px" }}>
-    <MapContainer/>
-  </div>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        paddingTop: "80%",
+        maxWidth: "1979px",
+        mx: "auto",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <MapContainer />
+      </Box>
+    </Box>
   );
 }

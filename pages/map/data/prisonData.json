@@ -1,59 +1,57 @@
 {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-6.8498, 33.9716]
-            },
-            "properties": {
-                "name": "Prison 1",
-                "city": "Rabat",
-                "density": 44,
-                "capacity": 5000
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-7.5898, 33.5731]
-            },
-            "properties": {
-                "name": "Prison 2",
-                "city": "Casablanca",
-                "density": 70,
-                "capacity": 3500
-
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.0033, 34.0331]
-            },
-            "properties": {
-                "name": "Prison 3",
-                "city": "Fes",
-                "density": 5,
-                "capacity": 8000
-
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-8.0083, 31.6295]
-            },
-            "properties": {
-                "name": "Prison 4",
-                "city": "Marrakech",
-                "density": 100,
-                "capacity": 2400
-            }
-        }
-    ]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-6.8498, 33.9716]
+      },
+      "properties": {
+        "name": "Prison 1",
+        "city": "Rabat-Salé-Kenitra",
+        "density": 44,
+        "capacity": 5000
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-7.5898, 33.5731]
+      },
+      "properties": {
+        "name": "Prison 2",
+        "city": "Casablanca-Settat",
+        "density": 70,
+        "capacity": 3500
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.0033, 34.0331]
+      },
+      "properties": {
+        "name": "Prison 3",
+        "city": "Fez-Meknes",
+        "density": 5,
+        "capacity": 8000
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-8.0083, 31.6295]
+      },
+      "properties": {
+        "name": "Prison 4",
+        "city": "Marrakech-Safi",
+        "density": 100,
+        "capacity": 2400
+      }
+    }
+  ]
 }

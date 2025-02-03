@@ -1,24 +1,41 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 import L from "leaflet";
-import CategoryLegend from "./styling/CategoryLegend";
-import GradientLegend from "./styling/GradientLegend";
 import { createRoot } from "react-dom/client";
+import { CategoryLegend } from "./components/CategoryLegend";
+import { GradientLegend } from "./components/GradientLegend";
+import { LegendData, LegendType } from "./types/legendTypes";
 
 interface LegendProps {
-  sortingData: {
-    field: string;
-    Legends: Array<{
-      color: string;
-      NumericRanges: number[];
-      label?: string;
-    }>;
-  };
-  legendType: "category" | "gradient";
+  sortingData: LegendData;
+  legendType: LegendType;
 }
 
-const LegendControl = ({ sortingData, legendType }: LegendProps) => {
+const Legend = ({ sortingData, legendType }: LegendProps) => {
   const map = useMap();
+
+  const renderLegend = () => {
+    switch (legendType) {
+      case "category":
+        const categories = sortingData.Legends.map((legend) => ({
+          label: legend.label || `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`,
+          color: legend.color,
+        }));
+        return <CategoryLegend title={sortingData.field} categories={categories} />;
+
+      case "gradient":
+      default:
+        return (
+          <GradientLegend
+            title={sortingData.field}
+            startColor={sortingData.Legends[0].color}
+            endColor={sortingData.Legends[sortingData.Legends.length - 1].color}
+            minValue={sortingData.Legends[0].NumericRanges[0]}
+            maxValue={sortingData.Legends[sortingData.Legends.length - 1].NumericRanges[1]}
+          />
+        );
+    }
+  };
 
   useEffect(() => {
     const control = new L.Control({ position: "bottomright" });
@@ -26,31 +43,7 @@ const LegendControl = ({ sortingData, legendType }: LegendProps) => {
     const root = createRoot(container);
 
     control.onAdd = () => {
-      if (legendType === "category") {
-        const categories = sortingData.Legends.map((legend) => ({
-          label:
-            legend.label ||
-            `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`,
-          color: legend.color,
-        }));
-
-        root.render(
-          <CategoryLegend title={sortingData.field} categories={categories} />
-        );
-      } else {
-        root.render(
-          <GradientLegend
-            title={sortingData.field}
-            startColor={sortingData.Legends[0].color}
-            endColor={sortingData.Legends[sortingData.Legends.length - 1].color}
-            minValue={sortingData.Legends[0].NumericRanges[0]}
-            maxValue={
-              sortingData.Legends[sortingData.Legends.length - 1]
-                .NumericRanges[1]
-            }
-          />
-        );
-      }
+      root.render(renderLegend());
       return container;
     };
 
@@ -65,4 +58,4 @@ const LegendControl = ({ sortingData, legendType }: LegendProps) => {
   return null;
 };
 
-export default LegendControl;
+export default Legend;

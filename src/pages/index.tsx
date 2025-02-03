@@ -2,12 +2,9 @@ import dynamic from "next/dynamic";
 import { Box } from "@mui/material";
 
 // Dynamically import the MapContainer component
-const MapContainer = dynamic(
-  () => import("./map/components/map/MapContainer"),
-  {
-    ssr: false,
-  }
-);
+const MapContainer = dynamic(() => import("../components/map/MapContainer"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

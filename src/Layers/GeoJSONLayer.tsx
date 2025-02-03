@@ -1,7 +1,7 @@
 import { GeoJSON } from "react-leaflet";
 import L from "leaflet";
 import { GeoJSON as GeoJSONType } from "geojson";
-import { choroplethColors } from "../../utils/Colors";
+import { choroplethColors } from "../utils/Colors";
 
 type GeoJSONLayerProps = {
   data: GeoJSONType;

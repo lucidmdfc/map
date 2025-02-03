@@ -1,13 +1,9 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import { MarkerRenderer } from "../marker/markerRenderer";
+import { MarkerRenderer } from "../marker";
 
-interface MarkerLayerProps {
-  data: any;
-  sortingData: any;
-  onMarkerClick?: (feature: any) => void;
-}
+
 
 const MarkerLayer: React.FC<MarkerLayerProps> = ({
   data,

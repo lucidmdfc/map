@@ -9,22 +9,22 @@ import "leaflet/dist/leaflet.css";
 import { GeoJSON as GeoJSONType } from "geojson";
 
 // controlls
-import Legend from "../legend/legend";
+import { Legend } from "../legend";
 import ResetButtonControl from "../controlls/ResetButtonControl";
 import SortingByControl from "../controlls/SortingByControl";
 // layers
-import GeoJSONLayer from "../Layers/GeoJSONLayer";
-import MarkerLayer from "../Layers/MarkerLayer";
+import { GeoJSONLayer, MarkerLayer } from "../Layers";
 // Data
-import moroccoData from "../../data/morocco.json";
-import prisonData from "../../data/prisonData.json";
-import sortingMethods from "../../data/sortingMethods.json";
+import country from "../../mock/country.json";
+import prisonData from "../../mock/prisonData.json";
+import sortingMethods from "../../mock/sortingMethods.json";
 // utils
 import FitBoundsToGeoJSON from "../../utils/fitBound";
+import { MapSettings } from ".";
 
 const CustomMapContainer: React.FC = () => {
   const [countryData, setCountryData] = useState<GeoJSONType | null>(
-    moroccoData as GeoJSONType
+    country as GeoJSONType
   );
   const [statistics, setStatistics] = useState<GeoJSONType | null>(null);
   const [sortingByMethode, setSortingByMethode] = useState(sortingMethods[0]);
@@ -48,7 +48,7 @@ const CustomMapContainer: React.FC = () => {
   };
 
   const handleReset = () => {
-    setCountryData(moroccoData as GeoJSONType);
+    setCountryData(country as GeoJSONType);
     setStatistics(null);
   };
 
@@ -62,13 +62,7 @@ const CustomMapContainer: React.FC = () => {
   return (
     <LeafletMapContainer
       style={{ height: "100%", width: "100%" }}
-      scrollWheelZoom={false}
-      dragging={false}
-      touchZoom={false}
-      doubleClickZoom={false}
-      boxZoom={false}
-      keyboard={false}
-      zoomControl={false}
+      {...MapSettings}
     >
       {/* <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

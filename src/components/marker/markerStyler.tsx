@@ -2,9 +2,9 @@ import L from "leaflet";
 import { FaMapMarker } from "react-icons/fa";
 // import "leaflet.awesome-markers/dist/leaflet.awesome-markers.css";
 // import "leaflet.awesome-markers";
-import ReactDOMServer from 'react-dom/server';
+import ReactDOMServer from "react-dom/server";
 
-export const createDivIcon = (color : any, size = 32) => {
+const markerStyler = (color: any, size = 32) => {
   // const style = `
   //   width: ${size}px;
   //   height: ${size}px;
@@ -19,7 +19,9 @@ export const createDivIcon = (color : any, size = 32) => {
   // `;
   const iconHtml = `<div">
     <i class="icon">
-      ${ReactDOMServer.renderToString(<FaMapMarker color={color} size={size} />)}
+      ${ReactDOMServer.renderToString(
+        <FaMapMarker color={color} size={size} />
+      )}
     </i>
   </div>`;
   return L.divIcon({
@@ -28,7 +30,7 @@ export const createDivIcon = (color : any, size = 32) => {
     iconSize: [size, size],
   });
 };
-
+export default markerStyler;
 // export const createMarkerIcon = (color: "red" | "darkred" | "orange" | "green" | "darkgreen" | "blue" | "purple" | "darkpurple" | "cadetblue") => {
 //   return L.AwesomeMarkers.icon({
 //     markerColor: color,

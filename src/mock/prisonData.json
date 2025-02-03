@@ -10,8 +10,8 @@
       "properties": {
         "name": "Prison 1",
         "city": "Rabat-Salé-Kenitra",
-        "density": 44,
-        "capacity": 5000
+        "Density": 44,
+        "Capacity": 5000
       }
     },
     {
@@ -23,8 +23,8 @@
       "properties": {
         "name": "Prison 2",
         "city": "Casablanca-Settat",
-        "density": 70,
-        "capacity": 3500
+        "Density": 70,
+        "Capacity": 3500
       }
     },
     {
@@ -36,8 +36,8 @@
       "properties": {
         "name": "Prison 3",
         "city": "Fez-Meknes",
-        "density": 5,
-        "capacity": 8000
+        "Density": 5,
+        "Capacity": 8000
       }
     },
     {
@@ -49,8 +49,8 @@
       "properties": {
         "name": "Prison 4",
         "city": "Marrakech-Safi",
-        "density": 100,
-        "capacity": 2400
+        "Density": 100,
+        "Capacity": 2400
       }
     }
   ]

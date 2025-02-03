@@ -3,16 +3,9 @@ import "leaflet.awesome-markers/dist/leaflet.awesome-markers.css";
 import L from "leaflet";
 import "leaflet.awesome-markers";
 import { getMarkerColor } from "../../utils/markerColor";
-import { createDivIcon } from "./markerStyler";
+import { markerStyler } from ".";
 
-interface MarkerRendererProps {
-  feature: any;
-  sortingData: any;
-  latlng: L.LatLng;
-  onMarkerClick?: (feature: any) => void;
-}
-
-export const MarkerRenderer: React.FC<MarkerRendererProps> = ({
+const MarkerRenderer: React.FC<MarkerRendererProps> = ({
   feature,
   latlng,
   onMarkerClick,
@@ -23,8 +16,9 @@ export const MarkerRenderer: React.FC<MarkerRendererProps> = ({
     feature.properties[sortingData.field],
     sortingData
   );
-  const icon = createDivIcon(color);
+  const icon = markerStyler(color);
   // console.log("icon", icon)
+  console.log("sortingData", sortingData);
   return (
     <Marker
       key={feature.properties.name}
@@ -46,3 +40,4 @@ export const MarkerRenderer: React.FC<MarkerRendererProps> = ({
     </Marker>
   );
 };
+export default MarkerRenderer;

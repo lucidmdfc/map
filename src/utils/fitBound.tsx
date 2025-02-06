@@ -4,7 +4,11 @@ import { useMap } from "react-leaflet";
 import { GeoJSON as GeoJSONType } from "geojson";
 
 // Fit Bounds To GeoJSON (Country + city)
-const FitBoundsToGeoJSON = ({ geojsonData }: { geojsonData: GeoJSONType | null }) => {
+const FitBoundsToGeoJSON = ({
+  geojsonData,
+}: {
+  geojsonData: GeoJSONType | null;
+}) => {
   const map = useMap();
 
   useEffect(() => {

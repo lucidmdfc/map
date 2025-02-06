@@ -8,6 +8,7 @@ const MapContainer = dynamic(() => import("../components/map/MapContainer"), {
 
 export default function Home() {
   return (
+    // <Box sx={{ display: "flex", height: "100%" }}>
     <Box
       sx={{
         position: "relative",
@@ -29,6 +30,8 @@ export default function Home() {
       >
         <MapContainer />
       </Box>
+      {/* </Box> */}
+      {/* <MapControls /> */}
     </Box>
   );
 }

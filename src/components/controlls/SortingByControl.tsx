@@ -1,58 +1,43 @@
+// This is a middleware/controller component that:
+// - Manages the local state for sorting method and legend type
+// - Acts as a bridge between MapContainer and Playground
+// - Handles state changes and passes them up to the parent
+// - Doesn't have its own UI, delegates rendering to Playground
+
+// Key responsibilities:
+// - State management for sortingBy and legendType
+// - Passes sorting methods data down to Playground
+// - Handles callbacks for sorting and legend type changes
+
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FilterControls } from "../Filters";
 
 interface SortingByControlProps {
-  sortingMethods: any;
+  sortingMethods: Array<{
+    field: string;
+    Legends: Array<{
+      label: string;
+      color: string;
+      NumericRanges: number[];
+    }>;
+  }>;
   onSortingByChange: (value: string) => void;
+  // onLegendTypeChange: (type: "category" | "gradient") => void;
 }
 
 export default function SortingByControl({
   sortingMethods,
   onSortingByChange,
-}: SortingByControlProps) {
-  const [sortingBy, setSortingBy] = useState(sortingMethods[0].field);
-  console.log(sortingMethods);
-  const handleChange = (event: SelectChangeEvent) => {
-    setSortingBy(event.target.value as string);
-    onSortingByChange(event.target.value as string);
-  };
-
+}: // onLegendTypeChange,
+SortingByControlProps) {
   return (
-    <Box
-      sx={{
-        width: "fit-content",
-        position: "absolute",
-        top: 10,
-        left: 10,
-      }}
-    >
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">SortingBy</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sortingBy}
-          label="SortingBy"
-          onChange={handleChange}
-          sx={{ fontSize: { xs: "12px", md: "16px" }, padding: { xs: "0px" } }}
-        >
-          {sortingMethods.map((sortingBy: any) => (
-            <MenuItem
-              sx={{
-                fontSize: { xs: "12px", md: "16px" },
-                padding: "6px",
-              }}
-              value={sortingBy.field}
-            >
-              {sortingBy.field}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <FilterControls
+      sortingMethods={sortingMethods}
+      onSortingChange={onSortingByChange}
+      // currentSorting={sortingBy}
+      // setSortingBy={setSortingBy}
+      // legendType={legendType}
+      // onLegendTypeChange={handleLegendTypeChange}
+    />
   );
 }

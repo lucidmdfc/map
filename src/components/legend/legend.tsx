@@ -1,47 +1,44 @@
-import { useMap } from "react-leaflet";
-import { useEffect } from "react";
-import L from "leaflet";
+import { CategoryLegend } from "./components/CategoryLegend";
+import { GradientLegend } from "./components/GradientLegend";
+import { LegendData, LegendType } from "./types/legendTypes";
 
-const LegendControl = ({ sortingData }: any) => {
-  const map = useMap();
+interface LegendProps {
+  sortingData: LegendData;
+  legendType: LegendType;
+}
 
-  useEffect(() => {
-    const control = new L.Control({ position: "bottomright" }); 
-    const container = L.DomUtil.create("div", "legend-control");
+const Legend = ({ sortingData, legendType }: LegendProps) => {
+  const renderLegend = () => {
+    switch (legendType) {
+      case "category":
+        const categories = sortingData.Legends.map((legend) => ({
+          label:
+            legend.label ||
+            `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`,
+          color: legend.color,
+        }));
+        return (
+          <CategoryLegend title={sortingData.field} categories={categories} />
+        );
 
-    // Create legend title using L.DomUtil.create
-    const legendTitle = L.DomUtil.create("h4", "legend-title");
-    legendTitle.textContent = sortingData.field;
-    container.appendChild(legendTitle);
+      case "gradient":
+      default:
+        return (
+          <GradientLegend
+            title={sortingData.field}
+            startColor={sortingData.Legends[0].color}
+            endColor={sortingData.Legends[sortingData.Legends.length - 1].color}
+            minValue={sortingData.Legends[0].NumericRanges[0]}
+            maxValue={
+              sortingData.Legends[sortingData.Legends.length - 1]
+                .NumericRanges[1]
+            }
+          />
+        );
+    }
+  };
 
-    sortingData.Legends.forEach((legend: any) => {
-      // Create legend item using L.DomUtil.create
-      const legendItem = L.DomUtil.create("div", "legend-item");
-
-      // Create color box using L.DomUtil.create
-      const colorBox = L.DomUtil.create("span", "legend-color");
-      colorBox.style.backgroundColor = legend.color;
-      legendItem.appendChild(colorBox);
-
-      // Create range text using L.DomUtil.create
-      const rangeText = L.DomUtil.create("span", "");
-      rangeText.textContent = `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`;
-      legendItem.appendChild(rangeText);
-
-      container.appendChild(legendItem);
-    });
-    
-
-    control.onAdd = () => container;
-    control.addTo(map);
-
-    return () => {
-      control.remove(); // Clean up the control when the component is unmounted
-    };
-    
-  }, [map, sortingData]); // Re-run when sortingData or map changes
-
-  return null;
+  return <div className="legend-container">{renderLegend()}</div>;
 };
 
-export default LegendControl;
+export default Legend;

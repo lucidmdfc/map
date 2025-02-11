@@ -22,8 +22,14 @@ import {
   Typography,
   ToggleButton,
   ToggleButtonGroup,
+  IconButton,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
+
+import { useContext } from "react";
+import { ThemeContext } from "../../theme/themeContext";
+import { MdDarkMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
 
 const FilterControlsContainer = styled(Paper)(({ theme }) => ({
   // position: "absolute",
@@ -31,8 +37,9 @@ const FilterControlsContainer = styled(Paper)(({ theme }) => ({
   top: theme.spacing(3),
   padding: theme.spacing(3),
   width: 280,
-  backgroundColor: "rgba(255, 255, 255, 0.95)",
+  backgroundColor: theme.palette.background.default,
   zIndex: 1000,
+  color: theme.palette.text.primary,
   [theme.breakpoints.down("sm")]: {
     width: "90%",
     right: "5%",
@@ -74,24 +81,21 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   const handleSortingChange = (event: SelectChangeEvent) => {
     onSortingChange(event.target.value);
     setSortingBy(event.target.value);
-    // onSortingByChange(event.target.value);
   };
-  // const onSortingChange = (value: string) => {
-  //   setSortingBy(value);
-  //   onSortingByChange(value);
-  // };
+  const themeContext = useContext(ThemeContext);
 
-  // const handleLegendTypeChange = (
-  //   _: React.MouseEvent<HTMLElement>,
-  //   newType: "category" | "gradient"
-  // ) => {
-  //   if (newType !== null) {
-  //     onLegendTypeChange(newType);
-  //   }
-  // };
+  if (!themeContext) {
+    throw new Error("ThemeContext must be used within ThemeProviderComponent");
+  }
+
+  const { toggleTheme, mode } = themeContext;
 
   return (
     <FilterControlsContainer elevation={3}>
+      <IconButton onClick={toggleTheme} sx={{ alignSelf: "flex-end", mb: 2 }}>
+        {mode === "dark" ? <MdOutlineDarkMode /> : <MdDarkMode />}
+      </IconButton>
+
       <Typography variant="h6" gutterBottom>
         Map Controls
       </Typography>
@@ -105,7 +109,28 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onChange={handleSortingChange}
           >
             {sortingMethods.map((method) => (
-              <MenuItem key={method.field} value={method.field}>
+              <MenuItem
+                key={method.field}
+                sx={{
+                  backgroundColor: (theme) => theme.palette.background.default,
+                  color: (theme) => theme.palette.text.primary,
+                  "&:hover": {
+                    backgroundColor: (theme) =>
+                      theme.palette.background.default,
+                    color: (theme) => theme.palette.text.primary,
+                  },
+                  "&.Mui-selected": {
+                    backgroundColor: (theme) =>
+                      theme.palette.background.default,
+                    color: (theme) => theme.palette.text.primary,
+                  },
+                  "&.Mui-selected:hover": {
+                    backgroundColor: (theme) =>
+                      theme.palette.background.default,
+                  },
+                }}
+                value={method.field}
+              >
                 {method.field}
               </MenuItem>
             ))}

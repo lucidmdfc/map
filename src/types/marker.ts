@@ -8,4 +8,5 @@ interface MarkerLayerProps {
   data: any;
   sortingData: any;
   onMarkerClick?: (feature: any) => void;
+  markers: any;
 }

@@ -1,6 +1,11 @@
+import { useTheme } from "@mui/material/styles";
 import { CategoryLegend } from "./components/CategoryLegend";
 import { GradientLegend } from "./components/GradientLegend";
 import { LegendData, LegendType } from "./types/legendTypes";
+import {
+  generateCategoryColors,
+  getThemeColorRanges,
+} from "@/src/utils/colorGenerator";
 
 interface LegendProps {
   sortingData: LegendData;
@@ -8,31 +13,46 @@ interface LegendProps {
 }
 
 const Legend = ({ sortingData, legendType }: LegendProps) => {
+  // console.log(sortingData);
+  const theme = useTheme();
+  console.log(theme.palette);
+  const colorRanges = getThemeColorRanges(theme);
+
   const renderLegend = () => {
     switch (legendType) {
       case "category":
-        const categories = sortingData.Legends.map((legend) => ({
+        const colors = generateCategoryColors(
+          sortingData.items.length,
+          colorRanges.orange
+        );
+        const categories = sortingData?.items?.map((legend, index) => ({
           label:
             legend.label ||
             `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`,
-          color: legend.color,
+          color: colors[index],
         }));
         return (
-          <CategoryLegend title={sortingData.field} categories={categories} />
+          <CategoryLegend title={sortingData?.field} categories={categories} />
         );
 
       case "gradient":
       default:
+        const legendsWithLabels = sortingData.items.map((legend) => ({
+          label:
+            legend.label ||
+            `${legend.NumericRanges[0]} - ${legend.NumericRanges[1]}`,
+          NumericRanges: legend.NumericRanges,
+        }));
         return (
           <GradientLegend
             title={sortingData.field}
-            startColor={sortingData.Legends[0].color}
-            endColor={sortingData.Legends[sortingData.Legends.length - 1].color}
-            minValue={sortingData.Legends[0].NumericRanges[0]}
+            colorRange={colorRanges.blue}
+            endColor={sortingData.items[sortingData.items.length - 1].color}
+            minValue={sortingData.items[0].NumericRanges[0]}
             maxValue={
-              sortingData.Legends[sortingData.Legends.length - 1]
-                .NumericRanges[1]
+              sortingData.items[sortingData.items.length - 1].NumericRanges[1]
             }
+            legends={legendsWithLabels}
           />
         );
     }

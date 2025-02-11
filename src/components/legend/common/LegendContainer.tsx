@@ -3,7 +3,6 @@ import { styled, alpha } from "@mui/material/styles";
 import { LegendContainerProps } from "../types/legendTypes";
 
 const StyledContainer = styled(Paper)(({ theme }) => ({
-  // backgroundColor: alpha(theme.palette.background.paper, 0.95),
   backgroundColor: alpha(theme.palette.background.paper, 0.95),
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,

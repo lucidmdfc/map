@@ -1,8 +1,11 @@
 import { Legend } from "../legend";
 // import sortingMethods from "../../dataMocks/sortingMethods.json";
 // import { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { FilterControls } from "../Filters";
+
+import { useContext } from "react";
+import { ThemeContext } from "../../theme/themeContext";
 
 const LegendWithFilters = ({
   onSortingByChange,
@@ -11,7 +14,7 @@ const LegendWithFilters = ({
   legendType,
   sortingByMethods,
 }: any) => {
-  console.log(sortingByMethod);
+  // console.log(sortingByMethod);
 
   return (
     <Box

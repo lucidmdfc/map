@@ -1,6 +1,8 @@
+import { ColorRange } from "@/src/utils/colorGenerator";
+
 export interface LegendData {
   field: string;
-  Legends: Array<{
+  items: Array<{
     color: string;
     NumericRanges: number[];
     label?: string;
@@ -19,10 +21,11 @@ export interface CategoryLegendProps extends BaseLegendProps {
 }
 
 export interface GradientLegendProps extends BaseLegendProps {
-  startColor: string;
+  colorRange: ColorRange;
   endColor: string;
   minValue: number;
   maxValue: number;
+  legends: any;
 }
 
 export interface LegendContainerProps {
@@ -34,4 +37,4 @@ export interface LegendLabelProps {
   variant?: "title" | "value" | "category";
 }
 
-export type LegendType = "category" | "gradient"; 
+export type LegendType = "category" | "gradient";

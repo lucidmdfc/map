@@ -41,8 +41,8 @@ export const LegendLabel: React.FC<LegendLabelProps> = ({
   text,
   variant = "value",
 }) => {
-  const formattedText =
-    variant === "title" ? text.charAt(0).toUpperCase() + text.slice(1) : text;
+  // const formattedText =
+  //   variant === "title" ? text.charAt(0).toUpperCase() + text.slice(1) : text;
 
-  return <StyledLabel legendvariant={variant}>{formattedText}</StyledLabel>;
+  return <StyledLabel legendvariant={variant}>{text}</StyledLabel>;
 };

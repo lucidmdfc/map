@@ -13,7 +13,7 @@ export default function Map() {
       <iframe
         src="http://192.168.1.14:3000"
         width="800px"
-        height="650px"
+        height="640px"
         style={{ border: "none" }}
         title="Map"
       ></iframe>

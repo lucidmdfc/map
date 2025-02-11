@@ -10,13 +10,16 @@ import { GradientScale } from "./GradientScale";
 
 export const GradientLegend: React.FC<GradientLegendProps> = ({
   title,
-  startColor,
+  colorRange,
   endColor,
   minValue,
   maxValue,
+  legends,
 }) => {
-  const { getLevelLabel, getBreakpoints } = useGradient(title);
-  const gradient = `linear-gradient(to right, ${startColor}, ${endColor})`;
+  const { getLevelLabel, getBreakpoints } = useGradient(title, legends);
+  const gradient = `linear-gradient(to right, ${colorRange.colors
+    .map((color, i) => `${color} ${colorRange.stops[i] * 100}%`)
+    .join(", ")})`;
   const breakpoints = getBreakpoints();
 
   return (

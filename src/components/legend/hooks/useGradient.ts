@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { gradientConfigs } from "../constants/gradientConfigs";
 
-export const useGradient = (title: string) => {
+export const useGradient = (title: string, legends: any) => {
   const getConfig = useCallback(() => {
-    const key = title.toLowerCase();
+    const key = title?.toLowerCase();
     return gradientConfigs[key] || gradientConfigs.density; // fallback to density if config not found
   }, [title]);
 

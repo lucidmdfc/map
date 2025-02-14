@@ -7,7 +7,6 @@ export interface RawMarker {
   coordinates: [number, number];
   metadata?: {
     title?: string;
-    description?: string;
     [key: string]: unknown;
   };
   type: string;
@@ -21,7 +20,6 @@ export interface UIMarker {
   isVisible: boolean;
   metadata: {
     title: string;
-    description: string;
     [key: string]: unknown;
   };
 }

@@ -16,12 +16,15 @@ const MarkerRenderer: React.FC<MarkerRendererProps> = ({
   const theme = useTheme();
   const getMarkerColor = useMarkerColor();
   const color = getMarkerColor(
-    feature.metadata[sortingData.field],
+    feature.metadata[sortingData.property],
     sortingData
   );
   const icon = markerStyler({ color, theme });
   // console.log("icon", icon)
-  console.log("sortingData", sortingData);
+  // console.log("latlng", latlng);
+  // console.log("feature", feature);
+  // console.log("sortingData", sortingData.property);
+  // console.log("sortingData", sortingData);
   return (
     <Marker
       key={feature.metadata.name}
@@ -36,9 +39,9 @@ const MarkerRenderer: React.FC<MarkerRendererProps> = ({
       }}
     >
       <Popup>
-        <strong>{feature.metadata.name}</strong>
+        <strong>{feature.metadata.title}</strong>
         <br />
-        {sortingData.field}: {feature.metadata[sortingData.field]}
+        {sortingData.property}: {feature.metadata[sortingData.property]}
       </Popup>
     </Marker>
   );

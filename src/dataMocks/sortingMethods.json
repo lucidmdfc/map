@@ -5,17 +5,14 @@
     "items": [
       {
         "label": "Low capacity",
-        "color": "#D1A676",
         "NumericRanges": [0, 2999]
       },
       {
         "label": "Medium capacity",
-        "color": "#BB8A33",
         "NumericRanges": [3000, 4999]
       },
       {
         "label": "High capacity",
-        "color": "#9A6F02",
         "NumericRanges": [5000, 9999]
       }
     ]
@@ -27,17 +24,14 @@
       { "label": "Low Density", "color": "#BAE2E8", "NumericRanges": [0, 19] },
       {
         "label": "Medium Density",
-        "color": "#76C5D1",
         "NumericRanges": [20, 49]
       },
       {
         "label": "High Density",
-        "color": "#33A9BB",
         "NumericRanges": [50, 99]
       },
       {
         "label": "Danger Density",
-        "color": "#02859A",
         "NumericRanges": [100, 1000]
       }
     ]

@@ -10,11 +10,15 @@ import { ThemeContext } from "../../theme/themeContext";
 const LegendWithFilters = ({
   onSortingByChange,
   sortingByMethod,
+  onCategoryChange,
   // setLegendType,
   legendType,
-  sortingByMethods,
+  sortingMethods,
+  categories,
+  timeSegment,
+  onTimeSegmentChange,
 }: any) => {
-  // console.log(sortingByMethod);
+  // console.log("timeSegment :", timeSegment);
 
   return (
     <Box
@@ -28,7 +32,11 @@ const LegendWithFilters = ({
     >
       <FilterControls
         onSortingChange={onSortingByChange}
-        sortingMethods={sortingByMethods}
+        sortingMethods={sortingMethods}
+        onCategoryChange={onCategoryChange}
+        categories={categories}
+        timeSegment={timeSegment}
+        onTimeSegmentChange={onTimeSegmentChange}
       />
       <Legend sortingData={sortingByMethod} legendType={legendType} />
     </Box>

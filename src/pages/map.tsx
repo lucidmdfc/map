@@ -14,7 +14,7 @@ export default function Map() {
         src="http://192.168.1.14:3000"
         width="800px"
         height="640px"
-        style={{ border: "none" }}
+        style={{ border: "none", maxWidth: "100%" }}
         title="Map"
       ></iframe>
     </Container>

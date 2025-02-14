@@ -15,7 +15,7 @@ interface LegendProps {
 const Legend = ({ sortingData, legendType }: LegendProps) => {
   // console.log(sortingData);
   const theme = useTheme();
-  console.log(theme.palette);
+  // console.log(theme.palette);
   const colorRanges = getThemeColorRanges(theme);
 
   const renderLegend = () => {

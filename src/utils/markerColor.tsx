@@ -23,18 +23,16 @@ export const useMarkerColor = () => {
 
   return (
     value: number,
-    sortingData: LegendData & { legendType: "category" | "gradient" }
+    sortingData: LegendData & { type: "category" | "gradient" }
   ) => {
-    if (sortingData.legendType === "category") {
+    if (sortingData.type === "category") {
       // For category-based visualization (e.g., capacity levels)
       const ranges = sortingData.items.map((legend) => legend.NumericRanges);
       const colors = generateCategoryColors(ranges.length, colorRanges.orange);
       return getColorForCategory(value, ranges, colors);
     } else {
       // For gradient-based visualization (e.g., density)
-      const allRanges = sortingData.items.map(
-        (legend) => legend.NumericRanges
-      );
+      const allRanges = sortingData.items.map((legend) => legend.NumericRanges);
       const min = Math.min(...allRanges.map((range) => range[0]));
       const max = Math.max(...allRanges.map((range) => range[1]));
       return getColorForValue(value, min, max, colorRanges.blue);
@@ -44,12 +42,12 @@ export const useMarkerColor = () => {
 
 export const getMarkerColor = (
   value: number,
-  sortingData: LegendData & { legendType: "category" | "gradient" },
+  sortingData: LegendData & { type: "category" | "gradient" },
   theme: Theme
 ) => {
   const colorRanges = getThemeColorRanges(theme);
 
-  if (sortingData.legendType === "category") {
+  if (sortingData.type === "category") {
     const ranges = sortingData.items.map((legend) => legend.NumericRanges);
     const colors = generateCategoryColors(ranges.length, colorRanges.orange);
     return getColorForCategory(value, ranges, colors);

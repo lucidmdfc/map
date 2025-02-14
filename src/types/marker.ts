@@ -5,7 +5,7 @@ interface MarkerRendererProps {
   onMarkerClick?: (feature: any) => void;
 }
 interface MarkerLayerProps {
-  data: any;
+  // data: any;
   sortingData: any;
   onMarkerClick?: (feature: any) => void;
   markers: any;
